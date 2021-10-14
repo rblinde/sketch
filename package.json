@@ -1,0 +1,18 @@
+{
+  "name": "sketch",
+  "version": "1.0.0",
+  "description": "Simple sketch app with HTML5 Canvas",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "build": "parcel build public/index.html"
+  },
+  "keywords": [
+    "sketch",
+    "canvas"
+  ],
+  "author": "rblinde",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0"
+  }
+}
