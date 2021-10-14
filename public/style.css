@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -11,6 +15,14 @@ body {
 }
 
 .tool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 3rem;
+  height: 3rem;
+
+  margin-top: 0.5rem;
   border: 3px solid #eee;
   border-radius: 100%;
   cursor: pointer;
@@ -22,4 +34,12 @@ body {
 
 .tool--reset:hover svg {
   transform: rotate(-360deg);
+}
+
+.tool--save svg {
+  transform: translateY(-2px)
+}
+
+.tool--save:hover {
+  transform: translateY(2px)
 }

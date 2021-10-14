@@ -13,11 +13,19 @@ class Sketch {
     this.canvas = document.getElementById(container) as HTMLCanvasElement;
     this.ctx = this.canvas.getContext('2d');
     this.isDrawing = false;
+    this.addEventListeners();
   }
 
   init(): void {
-    this.addEventListeners();
+    this.createBackground();
     this.handleResize();
+  }
+
+  createBackground(): void {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.ctx.fillStyle = '#ffffff';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   addEventListeners(): void {
@@ -31,8 +39,7 @@ class Sketch {
   handleResize(): void {
     // Save and load current drawing
     const tempData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    this.createBackground();
     this.ctx.putImageData(tempData, 0, 0);
     // Reset default settings, ctx resets after resize
     this.ctx.lineJoin = 'round';
@@ -60,6 +67,15 @@ class Sketch {
 
   clearScreen(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  saveAsImage(): void {
+    const downloadLink: HTMLElement = document.createElement('a');
+    downloadLink.setAttribute('download', 'image.png');
+    this.canvas.toBlob(blob => {
+      downloadLink.setAttribute('href', URL.createObjectURL(blob));
+      downloadLink.click();
+    });
   }
 }
 
