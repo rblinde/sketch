@@ -3,3 +3,23 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+#tools {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.tool {
+  border: 3px solid #eee;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.tool--reset svg {
+  transition: transform ease-in-out 0.2s;
+}
+
+.tool--reset:hover svg {
+  transform: rotate(-360deg);
+}

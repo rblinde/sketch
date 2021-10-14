@@ -57,6 +57,10 @@ class Sketch {
     this.ctx.stroke();
     this.mouse = { x: e.offsetX, y: e.offsetY };
   }
+
+  clearScreen(): void {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
 }
 
 export default Sketch;
