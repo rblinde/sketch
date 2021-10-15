@@ -65,6 +65,10 @@ class Sketch {
     this.mouse = { x: e.offsetX, y: e.offsetY };
   }
 
+  setColor(color: string): void {
+    this.ctx.strokeStyle = color;
+  }
+
   clearScreen(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }

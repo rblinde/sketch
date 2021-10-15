@@ -15,6 +15,8 @@ body {
 }
 
 .tool {
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +30,7 @@ body {
   cursor: pointer;
 }
 
+.tool--swatch svg,
 .tool--reset svg {
   transition: transform ease-in-out 0.2s;
 }
@@ -37,9 +40,65 @@ body {
 }
 
 .tool--save svg {
-  transform: translateY(-2px)
+  transform: translateY(-2px);
 }
 
 .tool--save:hover {
-  transform: translateY(2px)
+  transform: translateY(2px);
+}
+
+.tool--swatch:hover svg {
+  transform: rotate(-360deg);
+}
+
+/* Swatches */
+.swatches {
+  display: none;
+
+  position: absolute;
+  top: 1rem;
+  left: 3.25rem;
+
+  flex-direction: row;
+}
+
+.swatches.open {
+  display: flex;
+}
+
+.swatch {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.25rem;
+  border: 3px solid #eee;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.swatch--red {
+  background: #e76f51;
+}
+
+.swatch--green {
+  background: #2a9d8f;
+}
+
+.swatch--blue {
+  background: #264653;
+}
+
+.swatch--yellow {
+  background: #e9c46a;
+}
+
+.swatch--orange {
+  background: #f4a261;
+}
+
+.swatch--grey {
+  background: #b7b7a4;
+}
+
+.swatch--black {
+  background: #000000;
 }
