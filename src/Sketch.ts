@@ -8,12 +8,14 @@ class Sketch {
   ctx: CanvasRenderingContext2D;
   isDrawing: boolean;
   mouse: MouseObject;
+  color: string;
   lineWidth: number;
 
   constructor(container: string) {
     this.canvas = document.getElementById(container) as HTMLCanvasElement;
     this.ctx = this.canvas.getContext('2d');
     this.isDrawing = false;
+    this.color = '#000000';
     this.lineWidth = 10;
     this.addEventListeners();
   }
@@ -46,6 +48,7 @@ class Sketch {
     // Reset default settings, ctx resets after resize
     this.ctx.lineJoin = 'round';
     this.ctx.lineCap = 'round';
+    this.ctx.strokeStyle = this.color;
     this.ctx.lineWidth = this.lineWidth;
   }
 
@@ -68,6 +71,7 @@ class Sketch {
   }
 
   setColor(color: string): void {
+    this.color = color;
     this.ctx.strokeStyle = color;
   }
 
