@@ -26,8 +26,6 @@ class Sketch {
   }
 
   createBackground(): void {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
     this.ctx.fillStyle = '#ffffff';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
@@ -43,6 +41,8 @@ class Sketch {
   handleResize(): void {
     // Save and load current drawing
     const tempData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
     this.createBackground();
     this.ctx.putImageData(tempData, 0, 0);
     // Reset default settings, ctx resets after resize
@@ -82,6 +82,7 @@ class Sketch {
 
   clearScreen(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.createBackground();
   }
 
   saveAsImage(): void {
