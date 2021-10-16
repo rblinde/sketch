@@ -6,6 +6,7 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
+  font-family: "Permanent Marker", cursive;
 }
 
 #tools {
@@ -14,9 +15,11 @@ body {
   left: 1rem;
 }
 
-.tool {
+.complex-tool {
   position: relative;
+}
 
+.tool {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +33,7 @@ body {
   cursor: pointer;
 }
 
+.tool--size svg,
 .tool--swatch svg,
 .tool--reset svg {
   transition: transform ease-in-out 0.2s;
@@ -51,28 +55,45 @@ body {
   transform: rotate(-360deg);
 }
 
-/* Swatches */
+.tool--size:hover svg {
+  transform: scale(0.95);
+}
+
+/* Swatches & sizes */
+.sizes,
 .swatches {
   display: none;
 
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
   left: 3.25rem;
 
   flex-direction: row;
 }
 
+.sizes.open,
 .swatches.open {
   display: flex;
 }
 
+.size,
 .swatch {
   width: 2rem;
   height: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 0.25rem;
+
+  font-size: 0.75rem;
   border: 3px solid #eee;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.size.selected {
+  border-color: #000000;
 }
 
 .swatch--red {

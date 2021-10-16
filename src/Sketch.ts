@@ -8,11 +8,13 @@ class Sketch {
   ctx: CanvasRenderingContext2D;
   isDrawing: boolean;
   mouse: MouseObject;
+  lineWidth: number;
 
   constructor(container: string) {
     this.canvas = document.getElementById(container) as HTMLCanvasElement;
     this.ctx = this.canvas.getContext('2d');
     this.isDrawing = false;
+    this.lineWidth = 10;
     this.addEventListeners();
   }
 
@@ -44,7 +46,7 @@ class Sketch {
     // Reset default settings, ctx resets after resize
     this.ctx.lineJoin = 'round';
     this.ctx.lineCap = 'round';
-    this.ctx.lineWidth = 10;
+    this.ctx.lineWidth = this.lineWidth;
   }
 
   handleMousedown(e: MouseEvent): void {
@@ -67,6 +69,11 @@ class Sketch {
 
   setColor(color: string): void {
     this.ctx.strokeStyle = color;
+  }
+
+  setSize(size: number): void {
+    this.lineWidth = size;
+    this.ctx.lineWidth = size;
   }
 
   clearScreen(): void {

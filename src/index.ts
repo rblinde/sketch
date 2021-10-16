@@ -20,3 +20,21 @@ swatchElems.forEach(elem => elem.addEventListener('click', (e: Event): void => {
   swatchBtn.querySelector('svg').style.fill = color;
   app.setColor(color);
 }));
+
+const sizeBtn: HTMLElement = document.querySelector('.tool--size');
+const sizesElem: HTMLElement = document.querySelector('.sizes');
+sizeBtn.addEventListener('click', () => sizesElem.classList.toggle('open'));
+
+const sizeElems: Array<Element> = [...document.querySelectorAll('.size')];
+sizeElems.forEach(elem => elem.addEventListener('click', (e: Event): void => {
+  const target: HTMLElement = e.target as HTMLElement;
+  const size: number = parseInt(target.dataset.size);
+
+  for (const elem of sizeElems) {
+    elem.classList.remove('selected');
+  }
+
+  target.classList.add('selected');
+  sizesElem.classList.toggle('open');
+  app.setSize(size);
+}));
