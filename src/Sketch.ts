@@ -32,10 +32,16 @@ class Sketch {
 
   addEventListeners(): void {
     window.addEventListener('resize', () => this.handleResize());
+    // Mouse
     this.canvas.addEventListener('mousedown', (e) => this.handleMousedown(e));
     this.canvas.addEventListener('mousemove', (e) => this.draw(e));
     this.canvas.addEventListener('mouseup', () => this.isDrawing = false);
     this.canvas.addEventListener('mouseleave', () => this.isDrawing = false);
+    // Touchscreen
+    this.canvas.addEventListener('touchstart', (e) => this.handleMousedown(e));
+    this.canvas.addEventListener('touchmove', (e) => this.draw(e));
+    this.canvas.addEventListener('touchend', () => this.isDrawing = false);
+    this.canvas.addEventListener('touchcancel', () => this.isDrawing = false);
   }
 
   handleResize(): void {
@@ -52,22 +58,32 @@ class Sketch {
     this.ctx.lineWidth = this.lineWidth;
   }
 
-  handleMousedown(e: MouseEvent): void {
+  getEventLocation(e: MouseEvent | TouchEvent): Touch | MouseEvent {
+    if (e instanceof MouseEvent) {
+      return e;
+    }
+
+    return e.touches[0];
+  }
+
+  handleMousedown(e: MouseEvent | TouchEvent): void {
+    const pos = this.getEventLocation(e);
     this.isDrawing = true;
-    this.mouse = { x: e.offsetX, y: e.offsetY };
+    this.mouse = { x: pos.clientX, y: pos.clientY };
     this.draw(e);
   }
 
-  draw(e: MouseEvent): any {
+  draw(e: MouseEvent | TouchEvent): any {
     if (!this.isDrawing) {
       return false;
     }
 
+    const pos = this.getEventLocation(e);
     this.ctx.beginPath();
     this.ctx.moveTo(this.mouse.x, this.mouse.y);
-    this.ctx.lineTo(e.offsetX, e.offsetY);
+    this.ctx.lineTo(pos.clientX, pos.clientY);
     this.ctx.stroke();
-    this.mouse = { x: e.offsetX, y: e.offsetY };
+    this.mouse = { x: pos.clientX, y: pos.clientY };
   }
 
   setColor(color: string): void {
