@@ -53,18 +53,23 @@ class Sketch {
     this.ctx.lineWidth = this.lineWidth;
   }
 
-  private getEventLocation(e: MouseEvent | TouchEvent): Touch | MouseEvent {
+  private getEventLocation(e: MouseEvent | TouchEvent): MouseObject {
     if (e instanceof MouseEvent) {
-      return e;
+      return {
+        x: e.clientX,
+        y: e.clientY,
+      };
     }
 
-    return e.touches[0];
+    return {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
   }
 
   private handleMousedown(e: MouseEvent | TouchEvent): void {
-    const pos = this.getEventLocation(e);
     this.isDrawing = true;
-    this.mouse = { x: pos.clientX, y: pos.clientY };
+    this.mouse = this.getEventLocation(e);
     this.draw(e);
   }
 
@@ -76,9 +81,9 @@ class Sketch {
     const pos = this.getEventLocation(e);
     this.ctx.beginPath();
     this.ctx.moveTo(this.mouse.x, this.mouse.y);
-    this.ctx.lineTo(pos.clientX, pos.clientY);
+    this.ctx.lineTo(pos.x, pos.y);
     this.ctx.stroke();
-    this.mouse = { x: pos.clientX, y: pos.clientY };
+    this.mouse = { x: pos.x, y: pos.y };
   }
 
   public init(): void {
