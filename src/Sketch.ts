@@ -20,17 +20,12 @@ class Sketch {
     this.addEventListeners();
   }
 
-  init(): void {
-    this.createBackground();
-    this.handleResize();
-  }
-
-  createBackground(): void {
+  private createBackground(): void {
     this.ctx.fillStyle = '#ffffff';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  addEventListeners(): void {
+  private addEventListeners(): void {
     window.addEventListener('resize', () => this.handleResize());
     // Mouse
     this.canvas.addEventListener('mousedown', (e) => this.handleMousedown(e));
@@ -44,7 +39,7 @@ class Sketch {
     this.canvas.addEventListener('touchcancel', () => this.isDrawing = false);
   }
 
-  handleResize(): void {
+  private handleResize(): void {
     // Save and load current drawing
     const tempData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     this.canvas.width = window.innerWidth;
@@ -58,7 +53,7 @@ class Sketch {
     this.ctx.lineWidth = this.lineWidth;
   }
 
-  getEventLocation(e: MouseEvent | TouchEvent): Touch | MouseEvent {
+  private getEventLocation(e: MouseEvent | TouchEvent): Touch | MouseEvent {
     if (e instanceof MouseEvent) {
       return e;
     }
@@ -66,14 +61,14 @@ class Sketch {
     return e.touches[0];
   }
 
-  handleMousedown(e: MouseEvent | TouchEvent): void {
+  private handleMousedown(e: MouseEvent | TouchEvent): void {
     const pos = this.getEventLocation(e);
     this.isDrawing = true;
     this.mouse = { x: pos.clientX, y: pos.clientY };
     this.draw(e);
   }
 
-  draw(e: MouseEvent | TouchEvent): any {
+  private draw(e: MouseEvent | TouchEvent): any {
     if (!this.isDrawing) {
       return false;
     }
@@ -86,22 +81,27 @@ class Sketch {
     this.mouse = { x: pos.clientX, y: pos.clientY };
   }
 
-  setColor(color: string): void {
+  public init(): void {
+    this.createBackground();
+    this.handleResize();
+  }
+
+  public setColor(color: string): void {
     this.color = color;
     this.ctx.strokeStyle = color;
   }
 
-  setSize(size: number): void {
+  public setSize(size: number): void {
     this.lineWidth = size;
     this.ctx.lineWidth = size;
   }
 
-  clearScreen(): void {
+  public clearScreen(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.createBackground();
   }
 
-  saveAsImage(): void {
+  public saveAsImage(): void {
     const downloadLink: HTMLElement = document.createElement('a');
     downloadLink.setAttribute('download', 'sketch.png');
     this.canvas.toBlob(blob => {
