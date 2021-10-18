@@ -103,7 +103,7 @@ class Sketch {
 
   saveAsImage(): void {
     const downloadLink: HTMLElement = document.createElement('a');
-    downloadLink.setAttribute('download', 'image.png');
+    downloadLink.setAttribute('download', 'sketch.png');
     this.canvas.toBlob(blob => {
       downloadLink.setAttribute('href', URL.createObjectURL(blob));
       downloadLink.click();
