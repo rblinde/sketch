@@ -38,3 +38,9 @@ sizeElems.forEach(elem => elem.addEventListener('click', (e: Event): void => {
   sizesElem.classList.toggle('open');
   app.setSize(size);
 }));
+
+const gridBtn: HTMLElement = document.querySelector('.tool--grid');
+gridBtn.addEventListener('click', () => {
+  document.body.classList.toggle('grid');
+  gridBtn.classList.toggle('active');
+});

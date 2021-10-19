@@ -11,6 +11,11 @@ body {
   font-family: "Permanent Marker", cursive;
 }
 
+body.grid {
+  background-size: 3rem 3rem;
+  background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
+}
+
 #tools {
   position: absolute;
   bottom: 1rem;
@@ -35,12 +40,15 @@ body {
   border-radius: 100%;
 }
 
+.tool--grid svg,
 .tool--size svg,
 .tool--swatch svg,
 .tool--reset svg {
   transition: transform ease-in-out 0.2s;
 }
 
+.tool--grid:hover svg,
+.tool--swatch:hover svg,
 .tool--reset:hover svg {
   transform: rotate(-360deg);
 }
@@ -53,12 +61,12 @@ body {
   transform: translateY(2px);
 }
 
-.tool--swatch:hover svg {
-  transform: rotate(-360deg);
-}
-
 .tool--size:hover svg {
   transform: scale(0.95);
+}
+
+.tool--grid.active {
+  border-color: #000000;
 }
 
 /* Swatches & sizes */
