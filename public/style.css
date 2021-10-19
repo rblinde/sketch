@@ -1,6 +1,7 @@
 * {
   user-select: none;
   box-sizing: border-box;
+  cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA3QAAAN0BcFOiBwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHGSURBVFiFzZexagJBEIa/vcAJgRRiwqEErC18hRS+gOQB8hxW1/sE9oK1wdImRfAd7EPAIkJAiWARJsXOJutxnpfI3WVgG29mvn9n191ZIyLkMWNMDegBfaADNHUArHQsgRnwJCL7XIlFJHMAETACNoAkxlpH8veNxkQn82eAQyAGtpr0A5gCD0AbCBO+bf02VV/R2Nj3zSVAZ73QJDtgCNRPzcaLr2vMTnMsjlUjLbgLvGjgM9DKC07J1dIcojm7mQJ05g4+zirdL0SEmsuJiFIFqKMr+/hccIoQJ2JxsH88h9gr+9kzP1IJtxzxgQAt/VY3zZ/XPOee2Ckr8gWMVNmwKLgnYqiskYhggBrwBlwAtyLyToFmjKkDr8AncBNgj9crYF40HEAZc2X2AuzZDvBYNNwzx+oH2IsF7A4tyxyrE3B4o5VljtU02L/EXkSuSxSAMWYN1IIyoWkWYMvRMMaEZUGV1QBWTgD87IUy7HvfBdg2CuCuRAGOtQywPRzAfYkCHGtW/VEstnudAJfAoEi42kBZExHZ/4/ruPKGxHOoriXzlqKaptQLqK4tT1SimodJonTVPM1SqlHY49Qo5KQV9Tz/ArIx6+mf/A/6AAAAAElFTkSuQmCC') 16 16, auto;
 }
 
 body {
@@ -32,7 +33,6 @@ body {
   margin-top: 0.5rem;
   border: 3px solid #eee;
   border-radius: 100%;
-  cursor: pointer;
 }
 
 .tool--size svg,
@@ -92,7 +92,6 @@ body {
   font-size: 0.75rem;
   border: 3px solid #eee;
   border-radius: 100%;
-  cursor: pointer;
 }
 
 .size.selected {
