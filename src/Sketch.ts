@@ -20,11 +20,6 @@ class Sketch {
     this.addEventListeners();
   }
 
-  private createBackground(): void {
-    this.ctx.fillStyle = '#ffffff';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-
   private addEventListeners(): void {
     window.addEventListener('resize', () => this.handleResize());
     // Mouse
@@ -44,7 +39,6 @@ class Sketch {
     const tempData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
-    this.createBackground();
     this.ctx.putImageData(tempData, 0, 0);
     // Reset default settings, ctx resets after resize
     this.ctx.lineJoin = 'round';
@@ -86,8 +80,25 @@ class Sketch {
     this.mouse = { x: pos.x, y: pos.y };
   }
 
+  private canvasToImage(): string {
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+    const tempData = this.ctx.getImageData(0, 0, w, h);
+    const compositeOperation = this.ctx.globalCompositeOperation;
+    // Create white background
+    this.ctx.globalCompositeOperation = 'destination-over';
+    this.ctx.fillStyle = '#ffffff';
+    this.ctx.fillRect(0, 0, w, h);
+    const imageData = this.canvas.toDataURL();
+    // Reset canvas to old values
+    this.ctx.clearRect(0, 0, w, h);
+    this.ctx.putImageData(tempData, 0, 0);
+    this.ctx.globalCompositeOperation = compositeOperation;
+
+    return imageData;
+  }
+
   public init(): void {
-    this.createBackground();
     this.handleResize();
   }
 
@@ -102,16 +113,14 @@ class Sketch {
   }
 
   public clearScreen(): void {
-    this.createBackground();
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   public saveAsImage(): void {
     const downloadLink: HTMLElement = document.createElement('a');
     downloadLink.setAttribute('download', 'sketch.png');
-    this.canvas.toBlob(blob => {
-      downloadLink.setAttribute('href', URL.createObjectURL(blob));
-      downloadLink.click();
-    });
+    downloadLink.setAttribute('href', this.canvasToImage());
+    downloadLink.click();
   }
 }
 
