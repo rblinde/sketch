@@ -18,7 +18,7 @@ swatchElems.forEach(elem => elem.addEventListener('click', (e: Event): void => {
   const color: string = (e.target as HTMLElement).dataset.color;
   swatchesElem.classList.toggle('open');
   swatchBtn.querySelector('svg').style.fill = color;
-  app.setColor(color);
+  app.color = color;
 }));
 
 const sizeBtn: HTMLElement = document.querySelector('.tool--size');
@@ -36,7 +36,7 @@ sizeElems.forEach(elem => elem.addEventListener('click', (e: Event): void => {
 
   target.classList.add('selected');
   sizesElem.classList.toggle('open');
-  app.setSize(size);
+  app.lineWidth = size;
 }));
 
 const gridBtn: HTMLElement = document.querySelector('.tool--grid');
@@ -49,5 +49,5 @@ const drawingTypeBtns: Array<Element> = [...document.querySelectorAll('.tool--pe
 drawingTypeBtns.forEach(elem => elem.addEventListener('click', (e: Event): void => {
   const target: HTMLElement = (e.target as HTMLElement).closest('.tool');
   drawingTypeBtns.forEach(btn => btn.classList.toggle('active'));
-  app.setDrawingType(target.dataset.type);
+  app.drawingType = target.dataset.type;
 }));
