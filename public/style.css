@@ -20,8 +20,8 @@ body.grid {
 
 #tools {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
 }
 
 .complex-tool {
