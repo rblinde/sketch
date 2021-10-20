@@ -10,6 +10,7 @@ class Sketch {
   mouse: MouseObject;
   color: string;
   lineWidth: number;
+  drawingType: string;
 
   constructor(container: string) {
     this.canvas = document.getElementById(container) as HTMLCanvasElement;
@@ -45,6 +46,7 @@ class Sketch {
     this.ctx.lineCap = 'round';
     this.ctx.strokeStyle = this.color;
     this.ctx.lineWidth = this.lineWidth;
+    this.ctx.globalCompositeOperation = this.drawingType;
   }
 
   private getEventLocation(e: MouseEvent | TouchEvent): MouseObject {
@@ -110,6 +112,12 @@ class Sketch {
   public setSize(size: number): void {
     this.lineWidth = size;
     this.ctx.lineWidth = size;
+  }
+
+  public setDrawingType(type: string): void {
+    const drawingType = type === 'pencil' ? 'source-over' : 'destination-out';
+    this.ctx.globalCompositeOperation = drawingType;
+    this.drawingType = drawingType;
   }
 
   public clearScreen(): void {

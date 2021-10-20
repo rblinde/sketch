@@ -44,3 +44,10 @@ gridBtn.addEventListener('click', () => {
   document.body.classList.toggle('grid');
   gridBtn.classList.toggle('active');
 });
+
+const drawingTypeBtns: Array<Element> = [...document.querySelectorAll('.tool--pencil, .tool--eraser')];
+drawingTypeBtns.forEach(elem => elem.addEventListener('click', (e: Event): void => {
+  const target: HTMLElement = (e.target as HTMLElement).closest('.tool');
+  drawingTypeBtns.forEach(btn => btn.classList.toggle('active'));
+  app.setDrawingType(target.dataset.type);
+}));

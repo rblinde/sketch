@@ -42,13 +42,12 @@ body.grid {
   border-radius: 100%;
 }
 
-.tool--grid svg,
-.tool--size svg,
-.tool--swatch svg,
-.tool--reset svg {
+.tool svg {
   transition: transform ease-in-out 0.2s;
 }
 
+.tool--pencil:hover svg,
+.tool--eraser:hover svg,
 .tool--grid:hover svg,
 .tool--swatch:hover svg,
 .tool--reset:hover svg {
@@ -67,7 +66,7 @@ body.grid {
   transform: scale(0.95);
 }
 
-.tool--grid.active {
+.tool.active {
   border-color: #000000;
 }
 
