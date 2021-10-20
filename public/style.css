@@ -46,11 +46,7 @@ body.grid {
   transition: transform ease-in-out 0.2s;
 }
 
-.tool--pencil:hover svg,
-.tool--eraser:hover svg,
-.tool--grid:hover svg,
-.tool--swatch:hover svg,
-.tool--reset:hover svg {
+.tool--rotate:hover svg {
   transform: rotate(-360deg);
 }
 
